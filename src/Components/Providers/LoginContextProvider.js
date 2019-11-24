@@ -1,24 +1,29 @@
 import React, {useState} from 'react';
-import LoginContext from './LoginContext';
-
-let token;
-
-const LoginContextProvider = () => {
+import LoginContext from '../../Components/Providers/LoginContext';
 
 
-        constructor(props) 
-        {
-        super(props);
-        this.state = {
-            username:"",
-            password:"",
-        }
+
+const LoginContextProvider = ({children}) => {
+
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
+    const [token, setToken] = useState(null);
     
+
+        const constructor = (props) =>
+        {
+        // super(props);
+        // this.state = {
+        //     // username:"",
+        //     // password:"",
+        // }
+            setUsername(username);
+            setPassword(password);
         this.handleChange = this.handleChange.bind(this);
         this.submit = this.submit.bind(this);
         }
     
-        handleChange(element)
+        const handleChange = (element) =>
         {
             const inputName = element.target.name;
             const inputValue = element.target.value;
@@ -32,7 +37,7 @@ const LoginContextProvider = () => {
     
     
     
-        submit(e)
+        const submit = (e) =>
         {
             e.preventDefault()
             fetch("http://localhost:8000/login",
@@ -48,7 +53,7 @@ const LoginContextProvider = () => {
             // .then(res => console.log(res.token))
         
             .then(res => {
-                let token = res.token;
+                setToken(res.token);
                 console.log("token: ", token);
             })
         
@@ -67,7 +72,7 @@ const LoginContextProvider = () => {
             submit,
             handleChange
         }}>
-
+            {children}
         </LoginContext.Provider>
         
         </main>

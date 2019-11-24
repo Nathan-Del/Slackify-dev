@@ -85,7 +85,7 @@ return(
                         <form onSubmit={context.submit}>
                          <label>
                              Username:
-                             <input type="text" name="username" id="username" value={context.user} onChange={context.handleChange}/>
+                             <input type="text" name="username" id="username" value={context.username} onChange={context.handleChange}/>
                              Password:
                              <input type="password" name="password" id="password" value={context.password} onChange={context.handleChange}/>
                          </label>
@@ -95,7 +95,7 @@ return(
                     </div>
                 )
         }}
-    </LoginContext.Consumer>
+        </LoginContext.Consumer>
     </div>
     
 );
